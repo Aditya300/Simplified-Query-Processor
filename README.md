@@ -16,12 +16,6 @@ PARTITIONING THE TABLE:
 6. Implement a Python function Delete Partitions() that deletes all generated partitions as well as any metadata related to      the partitioning scheme.
 
 NOTE: Download rating.dat file from the MovieLens website (http://files.grouplens.org/datasets/movielens/ml- 10m.zip)
-
-The lines within this file are ordered first by UserID, then, within user, by MovieID. Ratings are made on a 5-star scale, with half-star increments. Timestamps represent seconds since midnight Coordinated Universal Time (UTC) of January 1, 1970. A sample of the file contents is given below: 
-
-1::122::5::838985046 
-1::185::5::838983525 
-1::231::5::838983392
-                                                                      
+                                           
                                                                       
                                                                  
