@@ -18,7 +18,7 @@ PARTITIONING THE TABLE:
 NOTE: Download rating.dat file from the MovieLens website (http://files.grouplens.org/datasets/movielens/ml- 10m.zip)
                                            
 
-**Range Query:**
+**RANGE QUERY:**
 
 RangeQuery() –
 
@@ -36,7 +36,7 @@ RoundRobinRatingsPart1,1,377,0.5
 
 Note: Please use ‘,’ (COMMA, no space character) as delimiter between PartitionName, UserID, MovieID and Rating.
 
-**Point Query:**
+**POINT QUERY:**
 
 PointQuery() –
 1. Implement a Python function PointQuery that takes as input: (1) Ratings table stored in PostgreSQL, (2) RatingValue.          (3)openconnection
