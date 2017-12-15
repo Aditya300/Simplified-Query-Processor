@@ -17,23 +17,39 @@ PARTITIONING THE TABLE:
 
 NOTE: Download rating.dat file from the MovieLens website (http://files.grouplens.org/datasets/movielens/ml- 10m.zip)
                                            
-**PARALLEL SORT:**
 
-Implemented a Python function ParallelSort() that takes as input: (1) InputTable stored in a PostgreSQL database, (2) SortingColumnName the name of the column used to order the tuples by. ParallelSort() then sorts all tuples (using five parallelized threads) and stores the sorted tuples for in a table named OutputTable (the output table name is passed to the function). The OutputTable contains all the tuple present in InputTable sorted in ascending order.
+**Range Query:**
 
-**PARALLEL JOIN:**
+RangeQuery() –
 
-Implement a Python function ParallelJoin() that takes as input: (1) InputTable1 and InputTable2 table stored in a PostgreSQL database, (2) Table1JoinColumn and Table2JoinColumn that represent the join key in each input table respectively. ParallelJoin() then joins both InputTable1 and InputTable2 (using five parallelized threads) and stored the resulting joined tuples in a table named OutputTable (the output table name is passed to the function). The schema of OutputTable should be similar to the schema of both InputTable1 and InputTable2 combined.
+1. Implemented a Python function RangeQuery that takes as input: (1) Ratings table stored in PostgreSQL, (2) RatingMinValue      (3) RatingMaxValue (4) openconnection.
+2. Please note that the RangeQuery would not use ratings table but it would use the range and round robin partitions of the      ratings table.
+3. RangeQuery() then returns all tuples for which the rating value is larger than or equal to RatingMinValue and less than or    equal toRatingMaxValue.
+4. The returned tuples should are stored in a text file, named RangeQueryOut.txt such that each line represents a tuple that      has the following format such that PartitionName represents the full name of the partition i.e. RangeRatingsPart1 or          RoundRobinRatingsPart4 etc. in which this tuple resides.
 
-**Function Interface: -**
+**Example:**
 
-**ParallelJoin (InputTable1, InputTable2, Table1JoinColumn, Table2JoinColumn,OutputTable, openconnection)**
+**PartitionName, UserID, MovieID, Rating**
 
-**InputTable1** – Name of the first table on which you need to perform join.
-**InputTable2** – Name of the second table on which you need to perform join.
-**Table1JoinColumn** – Name of the column from first table i.e. join key for first table.
-**Table2JoinColumn** – Name of the column from second table i.e. join key for second table.
-**OutputTable** - Name of the table where the output needs to be stored.
-**openconnection** – connection to the database.
+RangeRatingsPart0,1,377,0.5
+RoundRobinRatingsPart1,1,377,0.5
+
+Note: Please use ‘,’ (COMMA, no space character) as delimiter between PartitionName, UserID, MovieID and Rating.
+
+**Point Query:**
+
+PointQuery() –
+1. Implement a Python function PointQuery that takes as input: (1) Ratings table stored in PostgreSQL, (2) RatingValue.          (3)openconnection
+2. Please note that the PointQuery would not use ratings table but it would use the range and round robin partitions of the      ratings table.
+3. PointQuery() then returns all tuples for which the rating value is equal to RatingValue.
+4. The returned tuples should be stored in a text file, named PointQueryOut.txt such that each line represents a tuple that      has the following format such that PartitionName represents the full name of the partition i.e. RangeRatingsPart1 or          RoundRobinRatingsPart4 etc. in which this tuple resides.
+
+**Example:** 
+
+**PartitionName, UserID, MovieID, Rating RangeRatingsPart3,23,459,3.5**
+
+RoundRobinRatingsPart4,31,221,0
+
+Note: Please use ‘,’ (COMMA) as delimiter between PartitionName, UserID, MovieID and Rating.
                                                                  
                                                                 
